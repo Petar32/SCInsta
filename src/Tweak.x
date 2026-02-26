@@ -5,6 +5,12 @@
 #import "Utils.h"
 #import "Settings/SCISettingsViewController.h"
 
+// Ensure compiler knows IGProfileViewController is a UIViewController
+@interface IGProfileViewController : UIViewController
+- (void)sci_addPekiLocalVerificationBadgeIfNeeded;
+- (BOOL)sci_isViewingOwnProfile;
+@end
+
 ///////////////////////////////////////////////////////////
 
 // Screenshot handlers
