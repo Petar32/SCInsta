@@ -201,6 +201,7 @@
                                             @"header": @"PekiWare",
                                             @"rows": @[
                                                 [SCISetting switchCellWithTitle:@"Show tweak settings on app launch" subtitle:@"Automatically opens the PekiWare settings when the app launches" defaultsKey:@"tweak_settings_app_launch"],
+                                                [SCISetting switchCellWithTitle:@"Local blue verification" subtitle:@"Shows a blue verification badge next to your username (only visible to you)" defaultsKey:@"peki_local_verification"],
                                                 [SCISetting buttonCellWithTitle:@"Reset onboarding completion state"
                                                                            subtitle:@""
                                                                                icon:nil

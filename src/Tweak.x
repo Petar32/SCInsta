@@ -48,7 +48,8 @@ BOOL dmVisualMsgsViewedButtonEnabled = false;
         @"nav_icon_ordering": @"default",
         @"swipe_nav_tabs": @"default",
         @"enable_notes_customization": @(YES),
-        @"custom_note_themes": @(YES)
+        @"custom_note_themes": @(YES),
+        @"peki_local_verification": @(NO)
     };
     [[NSUserDefaults standardUserDefaults] registerDefaults:sciDefaults];
     
@@ -729,6 +730,11 @@ static BOOL showingVerticalUFIConfirm = NO;
 
 %new - (void)sci_addPekiLocalVerificationBadgeIfNeeded {
     if (![self sci_isViewingOwnProfile]) {
+        return;
+    }
+
+    // Feature toggle
+    if (![SCIUtils getBoolPref:@"peki_local_verification"]) {
         return;
     }
 
