@@ -738,7 +738,26 @@ static BOOL showingVerticalUFIConfirm = NO;
         return;
     }
 
-    NSString *titleText = self.title ?: @"";
+    // Prefer actual username from IGUser, fall back to controller title
+    NSString *titleText = nil;
+    @try {
+        id user = nil;
+        if ([self respondsToSelector:@selector(user)]) {
+            user = [self performSelector:@selector(user)];
+        } else {
+            user = [self valueForKey:@"user"];
+        }
+
+        if (user && [user respondsToSelector:@selector(username)]) {
+            titleText = [user valueForKey:@"username"];
+        }
+    } @catch (NSException *exception) {
+        // Ignore and fall back to self.title
+    }
+
+    if (titleText.length == 0) {
+        titleText = self.title ?: @"";
+    }
 
     UILabel *titleLabel = [UILabel new];
     titleLabel.text = titleText;
